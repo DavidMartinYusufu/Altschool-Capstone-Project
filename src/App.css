@@ -1,0 +1,127 @@
+#root {
+  margin: 0%;
+  padding: 0%;
+}
+
+img {
+  width: 100%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid red;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+#links {
+  display: none;
+}
+
+#buttons1 {
+  display: none;
+}
+
+.Blue-link {
+  color: blue;
+}
+
+#mobile-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobile-lines {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+}
+
+button {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px 10px 20px;
+  border: none;
+  border-radius: 50px;
+}
+
+#try-free {
+  margin-left: 20px;
+}
+
+#article {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  border: 1px solid red;
+}
+
+#article p {
+  line-height: 25px;
+}
+
+span {
+  color: blue;
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 50px;
+}
+
+#buttons2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 50px;
+}
+
+#image {
+  margin-top: 50px;
+}
+
+@media screen and (min-width: 780px) {
+  #links {
+    display: flex;
+    gap: 20px;
+  }
+
+  #buttons1 {
+    display: flex;
+    align-items: center;
+  }
+
+  #mobile-lines {
+    display: none;
+  }
+
+  h1 {
+    font-size: 40px;
+    line-height: 70px;
+  }
+
+  article{
+    width: 80%;
+    margin: 0% auto;
+    border: 1px solid green;
+  }
+
+  article p {
+    width: 70%;
+    margin: 0% auto;
+  }
+
+  #image {
+    width: 50%;
+  }
+}
