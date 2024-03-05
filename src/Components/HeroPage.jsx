@@ -1,11 +1,20 @@
 import Logo from "../assets/Logo.png";
 import Frame from "../assets/Frame_29546.png";
+import { Link } from "react-router-dom";
+
+import SecondSection from './SecondSection'
+import ThirdSection from './ThirdSection';
+import FourthSection from './FourthSection';
+import FifthSection from './FifthSection';
+import SeventhSection from './SeventhSection';
+import Sixth1Section from './Sixth1Page';
 
 
-function HeroSection() {
+function HeroPage() {
   return (
     <>
-      <nav className="flex mt-[20px] justify-between items-center border-[1px] border-red-500 w-11/12 md:w-10/12 m-0 m-auto">
+    
+      <nav className="flex mt-[20px] justify-between items-center w-11/12 md:w-10/12 m-0 m-auto">
         <section>
           <img src={Logo} alt="This is an image" />
         </section>
@@ -20,10 +29,11 @@ function HeroSection() {
 
         <section className='hidden md:inline md:flex gap-[20px] items-center'>
           <div>
-            <a href="" className='text-blue-500'>Log in</a>
+            {/* <a href="" className='text-blue-500'>Log in</a> */}
+            <Link to='login' className='text-blue-500'>Log in</Link>
           </div>
           <div className='bg-blue-500 text-white py-[8px] px-[20px] rounded-[100px]'>
-            <button>Try for free</button>
+            <button><Link to='/signup'>Try for free</Link></button>
           </div>
         </section>
 
@@ -34,7 +44,7 @@ function HeroSection() {
         </section>
       </nav>
 
-      <section className='w-11/12 md:w-9/12 text-center m-auto border-[1px] border-solid border-red-500 mt-[75px]'>
+      <section className='w-11/12 md:w-9/12 text-center m-auto mt-[75px]'>
         <article>
           <h1 className="text-center font-bold text-[40px] md:text-[48px]">
             {" "}
@@ -55,12 +65,18 @@ function HeroSection() {
           <a className='text-blue-500' href="">Learn more</a>
         </article>
 
-        <article className='mt-[60px] md:w-6/12 m-auto border-[1px] border-solid border-red-500'>
+        <article className='mt-[60px] md:w-6/12 m-auto'>
           <img src={Frame} alt="" />
         </article>
       </section>
+      <SecondSection/>
+      <ThirdSection/>
+      <FifthSection/>
+      <FourthSection/>
+      <Sixth1Section/>
+      <SeventhSection/>
     </>
   );
 }
 
-export default HeroSection
+export default HeroPage

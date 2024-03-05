@@ -1,21 +1,23 @@
 // import "./App.css";
 import './index.css'
-import HeroSection from '../src/Components/HeroPage'
-import SecondSection from '../src/Components/SecondSection'
-import ThirdSection from '../src/Components/ThirdSection';
-import FourthSection from './Components/FourthSection';
-import FifthSection from './Components/FifthSection';
+import { Routes, Route } from 'react-router-dom';
+
+import HeroPage from './Components/HeroPage'
+import LoginPage from './Components/loginPage';
+import SignupPage from './Components/SignupPage';
 
 function App() {
   return (
-    <>
-      <HeroSection />
-      <SecondSection/>
-      <ThirdSection/>
-      <FourthSection/>
-      <FifthSection/>
+    <>   
+      <Routes>
+        <Route path='/'  element={<HeroPage />}/>
+        <Route path='/login' element={<LoginPage/>}/>
+        <Route path='/signUp' element={<SignupPage/>}/>
+      </Routes>
     </>
   );
 }
 
 export default App;
+
+

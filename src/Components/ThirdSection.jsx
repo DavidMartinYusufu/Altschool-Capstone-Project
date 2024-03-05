@@ -6,8 +6,8 @@ import Frame3 from "../assets/Frame3.png";
 function ThirdSection() {
   return (
     <>
-      <section className="flex flex-col mt-[50px] justify-between md:flex-row w-10/12 md:w-10/12 m-auto  border-[1px] border-red-500">
-        <section className=" border-[1px] border-red-500 md:w-5/12">
+      <section className="flex flex-col mt-[50px] justify-between md:flex-row w-10/12 md:w-10/12 m-auto">
+        <section className=" md:w-5/12">
           <h2 className="font-bold text-[40px]">
             Why choose <span className="text-blue-500">Scissors</span>
           </h2>
@@ -31,7 +31,7 @@ function ThirdSection() {
           </article>
         </section>
 
-        <section className=" border-[1px] border-red-500 md:w-7/12">
+        <section className=" md:w-7/12">
           <section className="flex flex-col justify-between md:flex-row">
             <article>
               <img src={Ellipse} alt="" />
