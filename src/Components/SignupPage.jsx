@@ -56,7 +56,7 @@ function SignupPage() {
       .then((result) => {
         // Get the result
         if (result) {
-          console.log(result.user)
+          console.log(result.user);
           // setSignedIn(true);
         } else {
           //..
@@ -88,6 +88,9 @@ function SignupPage() {
 
   return (
     <>
+      <div className="mt-[20px] ml-[20px] text-blue-500">
+        <Link to="/">Go to Home</Link>
+      </div>
       {user ? (
         authenticated ? (
           <UserProfile user={user} />
