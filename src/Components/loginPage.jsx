@@ -84,6 +84,9 @@ function LoginPage() {
 
   return (
     <>
+    <div className="mt-[20px] ml-[20px] text-blue-500">
+      <Link to='/'>Go to Home</Link>
+    </div>
       {user ? (
         authenticated ? (
           <div>

@@ -19,13 +19,13 @@ function FifthSection() {
               </span>
             </button>
           </form>
-          <article className="flex justify-center  mt-[20px]">
+          {/* <article className="flex justify-center  mt-[20px]">
             <p className="text-blue-500 text-[14px]">
               By clicking TrimURL, I agree to the{" "}
               <span className="font-bold text-blue-800">Terms of Service,</span>{" "}
               <br /> Privacy Policy and Use of Cookies.
             </p>
-          </article>
+          </article> */}
         </section>
       </section>
     </>
