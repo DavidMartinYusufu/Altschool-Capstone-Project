@@ -6,7 +6,10 @@ import {
   signInWithRedirect,
   GoogleAuthProvider,
   getRedirectResult,
-  onAuthStateChanged 
+  onAuthStateChanged ,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword 
+
 } from "firebase/auth";
 // import { getAnalytics } from "firebase/analytics";
 
@@ -33,4 +36,4 @@ const provider = new GoogleAuthProvider();
 const auth = getAuth();
 // const analytics = getAnalytics(app);
 
-export { app, provider, auth, signInWithRedirect, getRedirectResult, onAuthStateChanged  };
+export { app, provider, auth, signInWithRedirect, getRedirectResult, onAuthStateChanged,  createUserWithEmailAndPassword, signInWithEmailAndPassword   };
