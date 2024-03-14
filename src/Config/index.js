@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 import {
   getAuth,
   signInWithRedirect,
@@ -8,8 +9,7 @@ import {
   getRedirectResult,
   onAuthStateChanged ,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword 
-
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 // import { getAnalytics } from "firebase/analytics";
 
@@ -34,6 +34,7 @@ const app = initializeApp(firebaseConfig);
 //set up google auth provider..
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
+const database = getFirestore(app)
 // const analytics = getAnalytics(app);
 
-export { app, provider, auth, signInWithRedirect, getRedirectResult, onAuthStateChanged,  createUserWithEmailAndPassword, signInWithEmailAndPassword   };
+export { app, database, provider, auth, signInWithRedirect, getRedirectResult, onAuthStateChanged,  createUserWithEmailAndPassword, signInWithEmailAndPassword   };
