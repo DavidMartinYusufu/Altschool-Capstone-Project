@@ -108,7 +108,7 @@ function HeroPage() {
           </p>
         </article>
 
-        <article className="mt-[60px] md:w-6/12">
+        <article className="mt-[60px] md:w-6/12 m-auto">
           <img className="m-auto" src={Frame} alt="" />
         </article>
       </section>
