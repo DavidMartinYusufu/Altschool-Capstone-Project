@@ -10,10 +10,12 @@ import {
   getRedirectResult
 } from "../Config";
 import { useState, useEffect } from "react";
+import UserProfile from "./userProfile";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // const [displayName, setDisplayName] = useState("");
 
   const [user, setUser] = useState(null);
   const [authenticated, setAuthenticated] = useState(false);
@@ -36,14 +38,6 @@ function LoginPage() {
   const signIn = (event) => {
     event.preventDefault();
     signInWithRedirect(auth, provider);
-  };
-
-  // Sign out of firebase
-  const signOut = (event) => {
-    event.preventDefault();
-    auth.signOut().then(() => {
-      alert("Do you want to signed out?");
-    });
   };
 
   //Check auth state, if the user is signed in or not..
@@ -84,22 +78,11 @@ function LoginPage() {
 
   return (
     <>
-    <div className="mt-[20px] ml-[20px] text-blue-500">
-      <Link to='/'>Go to Home</Link>
-    </div>
       {user ? (
         authenticated ? (
-          <div>
-            <h1>Welcome. You are signed in</h1>
-            <div>{user.displayName}</div>
-            <div>{user.email}</div>
-            <button
-              onClick={signOut}
-              className=" text-[15px] bg-blue-500 text-white py-[8px] px-[20px] rounded-[100px] w-full md:w-full m-auto mt-[10px] "
-            >
-              Log out
-            </button>
-          </div>
+          
+            <UserProfile user={user}/>
+        
         ) : (
           <div>Please wait..</div>
         )
