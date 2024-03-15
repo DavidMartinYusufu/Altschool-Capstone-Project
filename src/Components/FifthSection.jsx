@@ -69,13 +69,13 @@ function FifthSection() {
           {/* {shortenedUrl && <p>Shortened URL: {shortenedUrl}</p>} */}
           {showQRCode ? (
             <>
-              <p></p>
-              <Link>Shortened URL: {shortenedUrl}</Link>
+            <section className="text-center">
+            <Link>Shortened URL: {shortenedUrl}</Link>
               <QRCode value={shortenedUrl} />
-              <p>{originalUrl}</p>
+            </section>
             </>
           ) : null}
-          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+          {errorMessage && <p className="text-center" style={{ color: "red" }}>{errorMessage}</p>}
         </section>
       </section>
     </>

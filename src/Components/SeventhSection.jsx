@@ -11,7 +11,6 @@ function SeventhSection() {
 
           <section>
             <p>Copyright &copy; Scissor.plc</p>
-            <p></p>
           </section>
         </section>
       </section>
