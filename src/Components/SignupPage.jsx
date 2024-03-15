@@ -8,20 +8,23 @@ import {
   getRedirectResult,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
+  updateProfile
 } from "../Config";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import UserProfile from "./userProfile";
-// import { rootCertificates } from "tls";
 
 function SignupPage() {
   // const [signedIn, setSignedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [authenticated, setAuthenticated] = useState(false);
 
-  const [username, setUsername] = useState("");
+  // const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [displayName, setDisplayName] = useState("");
+  const [error, setError] = useState()
+
   const [retypePassword, setRetypePassword] = useState("");
 
   // Sign into firebase with Google...
@@ -36,17 +39,24 @@ function SignupPage() {
     if (retypePassword !== password) {
       console.log("Password does not match");
       return;
-    } else {
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          // Signed up
-          console.log(userCredential);
-          // ...
-        })
-        .catch((error) => {
-          console.log(error);
-          // ..
-        });
+    } try {
+      // Create user with email and password
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+  
+      // Update user profile with display name
+      await updateProfile(userCredential.user, {
+        displayName: displayName
+      });
+  
+      // Reset form fields
+      setEmail("");
+      setPassword("");
+      setDisplayName("");
+      setRetypePassword("");
+      setError(null);
+    } catch (error) {
+      console.log(error);
+      setError(error.message);
     }
   };
 
@@ -86,14 +96,12 @@ function SignupPage() {
     });
   }, []);
 
+
   return (
     <>
-      <div className="mt-[20px] ml-[20px] text-blue-500">
-        <Link to="/">Go to Home</Link>
-      </div>
       {user ? (
         authenticated ? (
-          <UserProfile user={user} />
+            <UserProfile user={user}/>
         ) : (
           <div>Please wait..</div>
         )
@@ -126,6 +134,7 @@ function SignupPage() {
               <div className="bg-gray-300 w-full h-[2px]"></div>
               <p className="text-gray-600">Or</p>
               <div className="bg-gray-300 w-full h-[2px]"></div>
+              <p>{error}</p>
             </section>
             <section>
               <form
@@ -135,8 +144,8 @@ function SignupPage() {
                 <input
                   type="text"
                   placeholder="Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={displayName}
+                  onChange={(e) => setDisplayName(e.target.value)}
                   className=" pl-[20px] border-[2px] border-grey-900 w-full md:w-full m-auto h-[43px] rounded-[10px] focus:outline-blue-500  "
                   required
                 />
