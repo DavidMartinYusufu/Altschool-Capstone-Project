@@ -20,8 +20,8 @@ function ThirdSection() {
             advance analytics for all of these is second to <br />
             none.
           </p>
-          <article>
-            <p className="md:hidden inline">
+          <article className="mb-[20px]">
+            <p className="md:hidden inline ">
               Scissors is the hub of everything that has to do with your link
               management. We shorten your URLs, allow you creating custom ones
               for your personal, business, event usage. Our swift QR code
@@ -33,7 +33,7 @@ function ThirdSection() {
 
         <section className=" md:w-7/12">
           <section className="flex flex-col justify-between md:flex-row">
-            <article>
+            <article className="">
               <img src={Ellipse} alt="" />
               <h2 className="text-[25px] font-medium mt-4">URL Shortening</h2>
               <div className="mt-3"></div>

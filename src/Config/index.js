@@ -10,6 +10,7 @@ import {
   onAuthStateChanged ,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile
 } from "firebase/auth";
 // import { getAnalytics } from "firebase/analytics";
 
@@ -37,4 +38,4 @@ const auth = getAuth();
 const database = getFirestore(app)
 // const analytics = getAnalytics(app);
 
-export { app, database, provider, auth, signInWithRedirect, getRedirectResult, onAuthStateChanged,  createUserWithEmailAndPassword, signInWithEmailAndPassword   };
+export { app, database, provider, auth, updateProfile, signInWithRedirect, getRedirectResult, onAuthStateChanged,  createUserWithEmailAndPassword, signInWithEmailAndPassword   };
