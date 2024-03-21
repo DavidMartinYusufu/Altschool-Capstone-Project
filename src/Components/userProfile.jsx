@@ -2,7 +2,6 @@ import Magic from "../assets/magic_wand.png";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import QRCode from "react-qr-code";
-// import { collection, addDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import {
   collection,
@@ -12,12 +11,10 @@ import {
   where,
   deleteDoc,
   doc,
-  serverTimestamp,
 } from "firebase/firestore";
-import { database, app } from "../Config";
+import { database } from "../Config";
 import { Link } from "react-router-dom";
 import isUrl from "is-url";
-// import { nanoid } from "nanoid";
 
 function UserProfile() {
   const [originalUrl, setOriginalUrl] = useState("");
@@ -26,71 +23,33 @@ function UserProfile() {
   const [showQRCode, setShowQRCode] = useState(false);
   const [userData, setUserData] = useState(null);
   const [copySuccess, setCopySuccess] = useState(false);
-  // const [users, setUsers] = useState()
-  // const [loading, setLoading] = useState(false)
-  // const [shortenedUrls, setShortenedUrls] = useState([]);
 
   const auth = getAuth();
   const user = auth.currentUser;
 
-  // const shortenUrl = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await fetch(
-  //       `https://api.shrtco.de/v2/shorten?url=${originalUrl}`
-  //     )
-  //     const data = await response.json()
-  //     setShortenedUrl(data.result.full_short_link);
-
-  //     setShortenedUrl(response.data.id);
-  //     console.log(response.data.id);
-  //     console.log(user);
-
-  //     // Add shortened URL to Firestore
-  //     const usersRef = collection(database, "users");
-  //     await addDoc(usersRef, {
-  //       userId: user.uid,
-  //       originalUrl: originalUrl,
-  //       shortenedUrl: response.data.id,
-  //     });
-  //     setShowQRCode(true);
-  //     setOriginalUrl("");
-  //     console.log("qr code", showQRCode);
-  //   } catch (error) {
-  //     console.error("Error shortening URL:", error.response.data);
-  //     setErrorMessage("Error shortening URL. Please try again.");
-  //   }
-  // };
-
-
   const shortenUrl = async (e) => {
     e.preventDefault();
-    const validator = isUrl(originalUrl)
+    const validator = isUrl(originalUrl);
 
-    if(validator){
+    if (validator) {
       try {
         const response = await axios.post(
           "https://api-ssl.bitly.com/v4/shorten",
-          // "https://api.rebrandly.com/v1/links",
           {
             long_url: originalUrl,
-            // destination: originalUrl,
           },
           {
             headers: {
               Authorization: `891140b80a262ecb16de2092d0a2d569a8b64670`,
               "Content-Type": "application/json",
-  
-              // apikey: "d894ef86192d4020915fc4ed048c0f80",
-              // "Content-Type": "application/json",
             },
           }
         );
-  
+
         setShortenedUrl(response.data.id);
         console.log(response.data.id);
         console.log(user);
-  
+
         // Add shortened URL to Firestore
         const usersRef = collection(database, "users");
         await addDoc(usersRef, {
@@ -105,41 +64,10 @@ function UserProfile() {
         console.error("Error shortening URL:", error.response.data);
         setErrorMessage("Error shortening URL. Please try again.");
       }
-    }else {
-      setErrorMessage("Invalid url")
-      // setErrorMessage('')
+    } else {
+      setErrorMessage("Invalid url");
     }
   };
-
-
-  // const dummyData = [
-  //   {
-  //     id: "ddddd",
-  //     createdAt: new Date(),
-  //     name: "My website",
-  //     longURL: originalUrl,
-  //     shortCode: "",
-  //     totalClicks: 313,
-  //   },
-  // ];
-
-  // const [links, setLinks] = useState(dummyData);
-
-  // const shortenUrl = async (e, name, longURL) => {
-  //   e.preventDefault();
-  //   const link = {
-  //     name,
-  //     longURL,
-  //     // createdAt: app.firestore.FieldValue.serverTimestamp(),
-  //     shortCode: nanoid(6),
-  //     totalClicks: 0,
-  //   };
-
-  //   const resp = await firestore.collection("user")
-  //     .doc(auth.currentUser.uid)
-  //     .collection("links")
-  //     .add(link);
-  // };
 
   useEffect(() => {
     const getData = async () => {
@@ -157,7 +85,6 @@ function UserProfile() {
           });
         });
         setUserData(userData);
-
         console.log(userData);
       });
     };
@@ -201,8 +128,6 @@ function UserProfile() {
         console.error("Failed to copy URL:", error);
       });
   };
-
-  // click analytics
 
   return (
     <div>
@@ -248,16 +173,6 @@ function UserProfile() {
               </button>
             </form>
 
-            {/* {showQRCode ? (
-            <>
-              <p>Shortened URL: {shortenedUrl}</p>
-              <QRCode value={shortenedUrl} />
-              <section className="flex flex-wrap shrink w-full basis-1">
-                <p className="flex flex-wrap shrink ">{originalUrl}</p>
-              </section>
-            </>
-          ) : null} */}
-
             {errorMessage && (
               <p className="text-red-500 text-center pt-[10px]">
                 {errorMessage}
@@ -278,49 +193,6 @@ function UserProfile() {
               <h2 className="text-center text-gray-600 text-[20px]">
                 Your Shortened URLs
               </h2>
-              {/* <ul>
-                {userData.map((user, index) => (
-                  <li key={index}>
-                     <Link to={user.shortenedUrl} target="_blank">
-                      {user.shortenedUrl}
-                    </Link>
-                  </li>
-                ))}
-              </ul> */}
-
-              {/* <div className="w-11/12 m-auto">
-                {userData.map((user, index) => (
-                  <div className="" key={index}>
-                    <section className="w-full">
-                      <section className="flex flex-col  md:flex-row shadow-sm text-gray-600 m-6 rounded-[8px] justify-between items-center gap-8 bg-hex-F9FBFD border border-hex-F9FBFD p-[40px]">
-                        <p>{user.shortenedUrl}</p>
-                        <div className="flex flex-wrap">
-                        <span className="">{user.originalUrl}</span>
-                        </div>
-                      
-                        <a>
-                          <QRCode
-                            className="w-[50px] h-[50px]"
-                            value={shortenedUrl}
-                          />
-                        </a>
-                        <button
-                          className="hover:bg-gray-200 hover:rounded-[8px] p-2"
-                          onClick={() => handleCopy(user.shortenedUrl)}
-                        >
-                          Copy
-                        </button>
-                        <button
-                          className="bg-gray-200 rounded-[8px] p-2"
-                          onClick={() => handleDelete(user.id)}
-                        >
-                          Delete
-                        </button>
-                      </section>
-                    </section>
-                  </div>
-                ))}
-              </div> */}
 
               <div className="w-11/12 m-auto">
                 {userData.map((user, index) => (
@@ -340,7 +212,7 @@ function UserProfile() {
                             value={shortenedUrl}
                           />
                         </a>
-                        {/* <p>{user.createdAt}</p> */}
+
                         <div className="flex gap-7 ">
                           <button
                             className="hover:bg-gray-200 hover:rounded-[8px] p-2 text-blue-500"
@@ -369,4 +241,3 @@ function UserProfile() {
 }
 
 export default UserProfile;
-

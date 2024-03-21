@@ -26,28 +26,23 @@ function FourthSection() {
                 <p>Free plan for all users</p>
                 <span className="flex items-center gap-2">
                   <img src={check2} alt="check image" />
-                <p>Unlimited URL Shortening</p>
-
+                  <p>Unlimited URL Shortening</p>
                 </span>
                 <span className="flex items-center gap-2">
                   <img src={check2} alt="check image" />
-                <p>Basic Link Analytics</p>
-
+                  <p>Basic Link Analytics</p>
                 </span>
                 <span className="flex items-center gap-2">
                   <img src={check2} alt="check image" />
-                <p>Customizable Short Links</p>
-
+                  <p>Customizable Short Links</p>
                 </span>
                 <span className="flex items-center gap-2">
                   <img src={check2} alt="check image" />
-                <p>Standard Support</p>
-
+                  <p>Standard Support</p>
                 </span>
                 <span className="flex items-center gap-2">
                   <img src={check2} alt="check image" />
-                <p>Ad-supported</p>
-
+                  <p>Ad-supported</p>
                 </span>
               </section>
             </section>

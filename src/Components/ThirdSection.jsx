@@ -40,7 +40,8 @@ function ThirdSection() {
               <p className="hidden md:inline text-[15px]">
                 Scissor allows you to shorten URLs of your
                 <br />
-                business, events. Shorten your URL at scale,<br /> URL redirects.
+                business, events. Shorten your URL at scale,
+                <br /> URL redirects.
               </p>
 
               <p className="md:hidden inline">

@@ -7,10 +7,10 @@ import {
   signInWithRedirect,
   GoogleAuthProvider,
   getRedirectResult,
-  onAuthStateChanged ,
+  onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  updateProfile
+  updateProfile,
 } from "firebase/auth";
 // import { getAnalytics } from "firebase/analytics";
 
@@ -35,7 +35,18 @@ const app = initializeApp(firebaseConfig);
 //set up google auth provider..
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
-const database = getFirestore(app)
+const database = getFirestore(app);
 // const analytics = getAnalytics(app);
 
-export { app, database, provider, auth, updateProfile, signInWithRedirect, getRedirectResult, onAuthStateChanged,  createUserWithEmailAndPassword, signInWithEmailAndPassword   };
+export {
+  app,
+  database,
+  provider,
+  auth,
+  updateProfile,
+  signInWithRedirect,
+  getRedirectResult,
+  onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+};
