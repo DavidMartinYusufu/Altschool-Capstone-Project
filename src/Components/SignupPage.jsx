@@ -13,11 +13,14 @@ import {
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import UserProfile from "./userProfile";
+// import axios from "axios";
+
 
 function SignupPage() {
   // const [signedIn, setSignedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [authenticated, setAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -47,7 +50,30 @@ function SignupPage() {
       await updateProfile(userCredential.user, {
         displayName: displayName
       });
+
+    const apiObject = {
+      Email: email,
+      Name: displayName,
+      uuid: userCredential.user.uid
+    }
+
+    const apiRequest = await fetch(
+      "https://shorts.zictracks.com/api/users",
+      {
+        method: "POST",
+        body: JSON.stringify(apiObject)
+      }
+
+    )
   
+    if(apiRequest.ok){
+      console.log('api worked')
+      const newApiObject = await apiRequest.json()
+      console.log(newApiObject)
+    }
+
+
+    
       // Reset form fields
       setEmail("");
       setPassword("");
@@ -59,6 +85,74 @@ function SignupPage() {
       setError(error.message);
     }
   };
+
+
+  // const handleSignIn = async (e) => {
+  //   e.preventDefault();
+  
+  //   // Ensure that variables are defined and accessible
+  //   if (!email || !password || !displayName || !retypePassword) {
+  //     console.log("Please fill in all fields");
+  //     return;
+  //   }
+  
+  //   // Check if retype password matches the password
+  //   if (retypePassword !== password) {
+  //     console.log("Password does not match");
+  //     return;
+  //   }
+  
+  //   try {
+  //     // Create user with email and password
+  //     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+  
+  //     // Update user profile with display name
+  //     await updateProfile(userCredential.user, {
+  //       displayName: displayName
+  //     });
+  
+  //     // Prepare data for API request
+  //     const apiObject = {
+  //       Email: email,
+  //       Name: displayName,
+  //       uuid: userCredential.user.uid
+  //     };
+  
+  //     // Make API request to create user
+  //     const apiRequest = await fetch(
+  //       "https://shorts.zictracks.com/api/users",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json"
+  //         },
+  //         body: JSON.stringify(apiObject)
+  //       }
+  //     );
+  
+  //     // Handle response from API request
+  //     if (apiRequest.ok) {
+  //       console.log('User created successfully');
+  //       const newApiObject = await apiRequest.json();
+  //       console.log(newApiObject);
+  //     } else {
+  //       console.log('Failed to create user');
+  //       // Handle error response from API if needed
+  //     }
+  
+  //     // Reset form fields
+  //     setEmail("");
+  //     setPassword("");
+  //     setDisplayName("");
+  //     setRetypePassword("");
+  //     setError(null);
+  //   } catch (error) {
+  //     console.error("Error during sign-in:", error);
+  //     setError(error.message);
+  //   }
+  // };
+  
+
 
   // get redirect result..
   useEffect(() => {
@@ -93,13 +187,19 @@ function SignupPage() {
         setAuthenticated(false);
         // ...
       }
+      setLoading(false); 
     });
   }, []);
 
 
   return (
     <>
-      {user ? (
+    <section>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <section>
+    {user ? (
         authenticated ? (
             <UserProfile user={user}/>
         ) : (
@@ -207,6 +307,11 @@ function SignupPage() {
           </section>
         </section>
       )}
+    </section>
+      )}
+    </section>
+    
+      
     </>
   );
 }
