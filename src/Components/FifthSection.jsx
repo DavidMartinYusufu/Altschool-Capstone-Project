@@ -3,11 +3,6 @@ import { useState } from "react";
 import axios from "axios";
 import QRCode from "react-qr-code";
 import { Link } from "react-router-dom";
-// import {
-//   database,
-// } from "../Config";
-// import { collection, addDoc } from "firebase/firestore"; 
-
 
 function FifthSection() {
   const [originalUrl, setOriginalUrl] = useState("");
@@ -15,10 +10,8 @@ function FifthSection() {
   const [errorMessage, setErrorMessage] = useState("");
   const [showQRCode, setShowQRCode] = useState(false);
 
-  // const collectionRef = collection(database, 'users')
-
   const shortenUrl = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       const response = await axios.post(
         "https://api-ssl.bitly.com/v4/shorten",
@@ -66,16 +59,19 @@ function FifthSection() {
             </button>
           </form>
 
-          {/* {shortenedUrl && <p>Shortened URL: {shortenedUrl}</p>} */}
           {showQRCode ? (
             <>
-            <section className="text-center">
-            <Link>Shortened URL: {shortenedUrl}</Link>
-              <QRCode value={shortenedUrl} />
-            </section>
+              <section className="text-center">
+                <Link>Shortened URL: {shortenedUrl}</Link>
+                <QRCode value={shortenedUrl} />
+              </section>
             </>
           ) : null}
-          {errorMessage && <p className="text-center" style={{ color: "red" }}>{errorMessage}</p>}
+          {errorMessage && (
+            <p className="text-center" style={{ color: "red" }}>
+              {errorMessage}
+            </p>
+          )}
         </section>
       </section>
     </>

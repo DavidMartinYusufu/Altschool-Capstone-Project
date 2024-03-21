@@ -15,7 +15,6 @@ function HeroPage() {
 
   const handleHamburger = () => {
     setHamburger(!hamburger);
-    // setHamburger(false)
   };
 
   return (
@@ -37,7 +36,6 @@ function HeroPage() {
 
         <section className="hidden md:inline md:flex gap-[20px] items-center">
           <div>
-            {/* <a href="" className='text-blue-500'>Log in</a> */}
             <Link to="login" className="text-blue-500">
               Log in
             </Link>
@@ -61,7 +59,6 @@ function HeroPage() {
       {hamburger && (
         <section className="inline md:hidden flex flex-col justify-center items-center gap-2 bg-hex-F9FBFD w-full pt-8 pb-8 absolute top-[80px] left-0">
           <section className="flex flex-col justify-center items-center gap-2">
-            {/* <a href="#" className='text-blue-500'>My URLs</a> */}
             <a href="#">Features</a>
             <a href="#">Pricing</a>
             <a href="#">Analytics</a>
